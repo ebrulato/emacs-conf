@@ -25,7 +25,7 @@
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
- '(package-selected-packages '(haskell-mode)))
+ '(package-selected-packages '(rust-mode haskell-mode)))
 (package-initialize)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -35,10 +35,22 @@
  )
 
 ;; necesa por haskell-mode
+(setq default-process-coding-system '(utf-8 . utf-8))
 
+;; necesa por rust-mode
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+(package-refresh-contents)
+(require 'rust-mode)
+(setq rust-format-on-save t)
+(add-hook 'rust-mode-hook
+          (lambda () (prettify-symbols-mode)))
+(define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
 
 ;; Emacs
-(setq inhibit-startup-screen t)
+;;(setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 ;;(set-default-font "Ubuntu Mono-18")
