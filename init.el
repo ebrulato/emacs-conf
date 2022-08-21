@@ -38,10 +38,11 @@
 (setq default-process-coding-system '(utf-8 . utf-8))
 
 ;; necesa por rust-mode
+;; https://github.com/rust-lang/rust-mode 
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
+;;(package-initialize)
 (package-refresh-contents)
 (require 'rust-mode)
 (setq rust-format-on-save t)
